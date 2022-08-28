@@ -1,46 +1,26 @@
 //display
-let computerChoice=document.getElementById("computer-choice")
-let userChoice=document.getElementById("user-choice")
-let result=document.getElementById("result")
+const computerChoiceDisplay=document.getElementById("computer-choice")
+const userChoiceDisplay=document.getElementById("user-choice")
+const result=document.getElementById("result")
 //button
-let rock=document.getElementById("rock")
-let paper=document.getElementById("paper")
-let scissors=document.getElementById("scissors")
-//computer generate
-const computerArray=["Rock","Paper","Scissors"]
+const possibleChoices=document.querySelectorAll('button')
+const arr=["Rock","Paper","Scissors"]
 //result
 let resultDisplay
+let userChoice
+let computerChoice
 
-
-rock.addEventListener('click',function(){
-    //user choice
-    userChoice.textContent="Rock"
-    //computer choice
+possibleChoices.forEach(possibleChoice=>possibleChoice.addEventListener('click',(e)=>{
+    userChoice=e.target.id
+    userChoiceDisplay.innerHTML=userChoice
     generateComputer()
-    //result
     getResult()
-})
-paper.addEventListener('click',function(){
-    //user choice
-    userChoice.textContent="Paper"
-    //computer choice
-    generateComputer()
-    //result
-    getResult()
-
-})
-scissors.addEventListener('click',function(){
-    //user choice
-    userChoice.textContent="Scissors"
-    //computer choice
-    generateComputer()
-    //result
-    getResult()
-})
+}))
 
 function generateComputer(){
     randomGenerator=Math.floor(Math.random()*3)
-    computerChoice.textContent=computerArray[randomGenerator]
+    computerChoice=arr[randomGenerator]
+    computerChoiceDisplay.innerHTML=computerChoice
 }
 function getResult(){
     
@@ -66,5 +46,5 @@ function getResult(){
         resultDisplay="You Lost!"
     }
 
-    result.innerText=resultDisplay
+    result.innerHTML=resultDisplay
 }
